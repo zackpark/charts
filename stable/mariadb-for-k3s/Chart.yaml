@@ -1,0 +1,9 @@
+apiVersion: v2
+name: mariadb-for-k3s
+description: mariadb for k3s.
+
+type: application
+
+version: 0.1.0
+
+appVersion: "10.6.2"

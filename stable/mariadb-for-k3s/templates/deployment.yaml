@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "mariadb-for-k3s.fullname" . }}
+  labels:
+    {{- include "mariadb-for-k3s.labels" . | nindent 4 }}
+spec:
+  selector:
+    matchLabels:
+      {{- include "mariadb-for-k3s.selectorLabels" . | nindent 6 }}
+      tier: database
+  template:
+    metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "mariadb-for-k3s.selectorLabels" . | nindent 8 }}
+        tier: database
+    spec:
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          env:
+          {{- if .Values.mariadb }}
+          {{- if .Values.mariadb.rootPasswd }}
+          - name: MARIADB_ROOT_PASSWORD
+            value: {{ .Values.mariadb.rootPasswd | quote }}
+          {{- else }}
+          - name: MARIADB_ALLOW_EMPTY_ROOT_PASSWORD
+            value: "yes"
+          {{- end }}
+          {{- else }}
+          - name: MARIADB_ALLOW_EMPTY_ROOT_PASSWORD
+            value: "yes"
+          {{- end }}
+          ports:
+            - name: mariadb-port
+              containerPort: 80
+              protocol: TCP
+          volumeMounts:
+          - mountPath: "/var/lib/mysql"
+            name: mariadb-datadir
+      volumes:
+      - name: mariadb-datadir
+        persistentVolumeClaim:
+          claimName: {{ include "mariadb-for-k3s.fullname" . }}-pvc
