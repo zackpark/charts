@@ -3,7 +3,7 @@ entries:
   example:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2021-06-25T16:26:32.327342516+09:00"
+    created: "2021-06-25T17:07:35.528321987+09:00"
     description: A Helm chart for Kubernetes
     digest: 41f94da7af84117e2dc152bd408d5ca2c3a719c4e9a2ce08ef42741b19a079f0
     name: example
@@ -14,7 +14,17 @@ entries:
   mariadb-for-k3s:
   - apiVersion: v2
     appVersion: 10.6.2
-    created: "2021-06-25T16:26:32.32784484+09:00"
+    created: "2021-06-25T17:07:35.52911468+09:00"
+    description: mariadb for k3s.
+    digest: c2f79c79007ebc30367601caf91a04bd4063cde329fcbd1f0fea9c9702fca2cd
+    name: mariadb-for-k3s
+    type: application
+    urls:
+    - mariadb-for-k3s-0.2.0.tgz
+    version: 0.2.0
+  - apiVersion: v2
+    appVersion: 10.6.2
+    created: "2021-06-25T17:07:35.528661245+09:00"
     description: mariadb for k3s.
     digest: e4417dcac68e817a4d69aacaf7476c3c031f761558745a20f6ba2ac53748386d
     name: mariadb-for-k3s
@@ -22,4 +32,4 @@ entries:
     urls:
     - mariadb-for-k3s-0.1.0.tgz
     version: 0.1.0
-generated: "2021-06-25T16:26:32.326446791+09:00"
+generated: "2021-06-25T17:07:35.52744339+09:00"

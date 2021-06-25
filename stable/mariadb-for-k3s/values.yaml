@@ -13,5 +13,5 @@ service:
 resources: {}
 
 mariadb:
-  rootPasswd: ""
+  rootPasswd: "!Q@W3e4r"
 
